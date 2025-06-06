@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PPACB VIGPRO</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e6f4ff;
+      color: #003d66;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+    }
+
+    /* Running Text (Marquee) */
+    .marquee {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #cce7ff;
+      color: #003d66;
+      padding: 10px 0;
+      font-weight: 500;
+      text-align: center;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+      animation: marquee 12s linear infinite;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Judul & Info */
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 2rem;
+    }
+
+    .info {
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #336699;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    /* Countdown Timer */
+    .countdown {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-box {
+      background-color: #ffffff;
+      border: 2px solid #66b3ff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 100px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #005c99;
+    }
+
+    .label {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #337ab7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .time-box {
+        width: 80px;
+        padding: 15px;
+      }
+      .number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Running Text -->
+  <div class="marquee">
+    <span>Website ini akan aktif dan dapat diakses pada 22 September 2025 — Terima kasih telah menunggu!</span>
+  </div>
+
+  <!-- Judul & Deskripsi -->
+  <h1>Laman Pendaftaran VIGPRO</h1>
+  <div class="info">
+    Selamat datang di laman resmi pendaftaran <strong>Vigara Production</strong>.<br/>
+    Website ini akan dibuka dan dapat diakses mulai tanggal <strong>22 September 2025</strong>.
+  </div>
+
+  <!-- Countdown Timer -->
+  <div class="countdown" id="countdown">
+    <div class="time-box">
+      <div class="number" id="days">--</div>
+      <div class="label">Hari</div>
+    </div>
+    <div class="time-box">
+      <div class="number" id="hours">--</div>
+      <div class="label">Jam</div>
+    </div>
+    <div class="time-box">
+      <div class="number" id="minutes">--</div>
+      <div class="label">Menit</div>
+    </div>
+    <div class="time-box">
+      <div class="number" id="seconds">--</div>
+      <div class="label">Detik</div>
+    </div>
+  </div>
+
+  <!-- JavaScript Countdown Logic -->
+  <script>
+    const countdownDate = new Date("September 22, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "<h2>Website ini sekarang dapat diakses!</h2>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // First run
+  </script>
+
+</body>
+</html>
